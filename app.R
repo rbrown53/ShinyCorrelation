@@ -1,6 +1,21 @@
 library(shiny)
 library(tidyverse)
 
+library(shiny)
+library(tidyverse)
+
+ui <- fluidPage(
+  shinyjs::useShinyjs(),
+  textInput("cor_guess", "Guess the correlation!"),
+  actionButton(
+    inputId = "submit_guess",
+    label = "Submit Guess"
+  ),
+  plotOutput("graph"),
+  textOutput("message"),
+  actionButton("reset_input", "Press to Play Again!")
+)
+
 server <- function(input, output, session) {
   guess <- reactive(as.numeric(input$cor_guess))
   num_rand <- reactive(rchisq(input$num, 10))
@@ -31,3 +46,6 @@ server <- function(input, output, session) {
     session$reload() # Works, but won't store guesses.
   })
 }
+
+
+shinyApp(ui = ui, server = server)
