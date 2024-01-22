@@ -1,8 +1,8 @@
-library(shiny)
-library(tidyverse)
-
-library(shiny)
-library(tidyverse)
+#if (FALSE) {
+#  library(ggplot2)
+#}
+#webr::install("ggplot2")
+library(ggplot2)
 
 ui <- fluidPage(
   shinyjs::useShinyjs(),
@@ -26,7 +26,7 @@ server <- function(input, output, session) {
   
   output$graph <- renderPlot(
     ggplot(DF, aes(x, y)) +
-      geom_point(size = 3)
+      geom_point(size = 4)
   )
   
   observeEvent(
